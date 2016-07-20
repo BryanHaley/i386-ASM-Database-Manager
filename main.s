@@ -4,33 +4,33 @@
 #	DATE:		06/12/16
 
 #file descriptors for STDIN/STDOU
-.equ	STDIN,		0
-.equ	STDOUT,		1
+.equ STDIN, 0 #note to self: github doesn't like my tabs
+.equ STDOUT, 1
 
 #important system call numbers
-.equ	SYS_CALL,		0x80 #legacy i386
-.equ	SYS_EXIT,		1
-.equ	SYS_READ,		3
-.equ	SYS_WRITE,	4
-.equ SYS_OPEN,		5
-.equ SYS_CLOSE,	6
-.equ SYS_SEEK,		19
+.equ SYS_CALL, 0x80 #legacy i386
+.equ SYS_EXIT, 1
+.equ SYS_READ, 3
+.equ SYS_WRITE, 4
+.equ SYS_OPEN, 5
+.equ SYS_CLOSE, 6
+.equ SYS_SEEK, 19
 
 #define database entries
-.equ ENTRY_SIZE,	80 #all entries are 80 characters long
-.equ	NAME_START,	0 #name starts at first character
-.equ	DOB_START,	51 #date of birth starts after 51st character
-.equ	SAL_START,	60 #so on
-.equ	DOE_START,	71
+.equ ENTRY_SIZE, 80 #all entries are 80 characters long
+.equ NAME_START, 0 #name starts at first character
+.equ DOB_START, 51 #date of birth starts after 51st character
+.equ SAL_START, 60 #so on
+.equ DOE_START, 71
 
-.equ DB_FILENM,	8 #database file name is given as a command-line argument
-.equ DB_FILEDES,	-4 #store the rw file descriptor here on the stack
-.equ DB_FILEDES_RD,	-8 #store the rd file descriptor here on the stack
+.equ DB_FILENM, 8 #database file name is given as a command-line argument
+.equ DB_FILEDES, -4 #store the rw file descriptor here on the stack
+.equ DB_FILEDES_RD, -8 #store the rd file descriptor here on the stack
 
 #user input options
-.equ OPT_READ,		1
-.equ OPT_WRITE,	2
-.equ OPT_QUIT,		3
+.equ OPT_READ, 1
+.equ OPT_WRITE, 2
+.equ OPT_QUIT, 3
 
 .section .data 
 
@@ -90,7 +90,7 @@
 
 #macros to easily read from STDIN and write to STDOUT
 .macro print str, str_len
-	movl	$SYS_WRITE, %eax
+	movl $SYS_WRITE, %eax
 	movl $STDOUT, 	%ebx
 	movl $\str, 	%ecx
 	movl $\str_len, %edx
